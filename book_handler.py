@@ -106,5 +106,51 @@ def find_surname(book_list, author_surname):
     return returned_data
 
 
+def add_book(file, ISBN, title, author, pub_year):
+    """
+    Using that function the user is able to add a new book
+
+    :param file: books dataset
+    :param ISBN: ISBN
+    :param title: book title
+    :param author: book author
+    :pub_year: publication year
+    :return:
+    """
+    book_list = load_books(file)
+    last_id = int(book_list[-1][0])
+    with open(file, 'a') as f:
+        new_line = [str(last_id + 1), ISBN, title, author, pub_year]
+        f.write(",".join(new_line))
+    pass
+
+
+def exit():
+    """
+    Using that function you exit from the program
+    """
+    print("Exit\n")
+
+
+def menu():
+    """
+    That function is used to display all the 9 options.
+
+    :return: user choice
+    """
+    print("Please choose from 1-9")
+    print("1. Load books from file")
+    print("2. Save books to file")
+    print("3. Add a book")
+    print("4. Delete a book by id")
+    print("5. Display a book by id")
+    print("6. Display a book by title")
+    print("7. Display books")
+    print("8. Display books by surname search")
+    print("9. Exit")
+    user_choice = input()
+    return int(user_choice)
+
+
 book_list = load_books("test_dataset.csv")
-print(find_surname(book_list, 'Lamour'))
+print(add_book("test_dataset.csv", '0xxxxxx', "A fouls dream", "PK Kapsalis", "2018"))
