@@ -54,4 +54,6 @@ def create_test_dataset(file, new_file, data_size):
                         continue
 
 
-create_test_dataset("final_dataset.csv", "test_dataset.csv", data_size=100)
+chunk_size = int(input("Please enter the size for the test dataset: "))
+file_preprocessing("cleared_dataset.csv", "final_dataset.csv")
+create_test_dataset("final_dataset.csv", "test_dataset.csv", data_size=chunk_size)
