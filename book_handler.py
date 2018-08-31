@@ -122,14 +122,15 @@ def add_book(file, ISBN, title, author, pub_year):
     with open(file, 'a') as f:
         new_line = [str(last_id + 1), ISBN, title, author, pub_year]
         f.write(",".join(new_line))
+        f.write('\n')
     pass
 
 
-def exit():
+def choose_exit():
     """
     Using that function you exit from the program
     """
-    print("Exit\n")
+    print("You exited from data structures project, Bye!!")
 
 
 def menu():
