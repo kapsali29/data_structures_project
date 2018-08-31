@@ -36,14 +36,22 @@ def create_test_dataset(file, new_file, data_size):
         lines = file.readlines()
         with open(new_file, "w") as f:
             counter = 1
+            headers = [substring for substring in lines[0].split("\"") if substring != ',' and substring != '']
+            headers = ["id"] + headers
+            f.write(",".join(headers))
+            lines = lines[1:]
             for line in lines:
                 if counter == data_size:
                     break
                 else:
-                    counter += 1
                     cleaned_data = [substring for substring in line.split("\"") if substring != ',' and substring != '']
+                    cleaned_data = [str(counter)] + cleaned_data
+                    counter += 1
                     if cleaned_data:
                         new_line = ",".join(cleaned_data)
                         f.write(new_line)
                     else:
                         continue
+
+
+create_test_dataset("final_dataset.csv", "test_dataset.csv", data_size=100)
