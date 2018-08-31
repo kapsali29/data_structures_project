@@ -68,5 +68,43 @@ def display_book_by_id(book_list, book_id):
         return returned_data
 
 
+def display_book_by_title(book_list, title):
+    """
+    Using that function you are able to search for a book based on its title.
+
+    :param book_list: list of books
+    :param title: book title
+    :return: book info
+    """
+    returned_data = ""
+    book_list = book_list[1:]
+    for book in book_list:
+        if book[2] == title:
+            returned_data = ",".join(book)
+            break
+    if returned_data == "":
+        return "The requested title is not in the book list"
+    else:
+        return returned_data
+
+
+def find_surname(book_list, author_surname):
+    """
+    Using that function the book search is based on author's surname.
+
+    :param book_list: list of books
+    :param author_surname: author's last name
+    :return: book info
+    """
+    returned_data = []
+    book_list = book_list[1:]
+    for book in book_list:
+        author = book[3]
+        author_last_name = author.split(" ")[-1]
+        if author_last_name == author_surname:
+            returned_data.append(",".join(book))
+    return returned_data
+
+
 book_list = load_books("test_dataset.csv")
-print(display_book_by_id(book_list, 99))
+print(find_surname(book_list, 'Lamour'))
